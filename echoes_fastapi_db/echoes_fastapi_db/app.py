@@ -1,6 +1,6 @@
 from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import JSONResponse
-from db import SessionLocal, Upload
+from .db import SessionLocal, Upload
 import shutil
 import os
 

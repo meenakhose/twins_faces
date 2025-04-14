@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Echoes of Identity - Upload</title>
+</head>
+<body>
+    <h2>Upload an Image for Twin Detection</h2>
+    <form id="uploadForm" enctype="multipart/form-data" method="post">
+        <label for="file">Choose an image:</label>
+        <input type="file" id="file" name="file" required><br><br>
+
+        <label for="label">Label (e.g., twinA or twinB):</label>
+        <input type="text" id="label" name="label" required><br><br>
+
+        <button type="submit">Upload</button>
+    </form>
+
+    <div id="response"></div>
+
+    <script>
+        const form = document.getElementById("uploadForm");
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            const response = await fetch("http://127.0.0.1:8000/upload/", {
+                method: "POST",
+                body: formData
+            });
+
+            const result = await response.json();
+            document.getElementById("response").innerText = JSON.stringify(result, null, 2);
+        });
+    </script>
+</body>
+</html>
